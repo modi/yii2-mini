@@ -19,6 +19,21 @@ $config = [
     'basePath' => dirname(__DIR__),
     // 告诉框架，控制器在哪里
     'controllerNamespace' => 'mini\controllers',
+    // 在 Application 的 bootstrap() 方法里初始化的组件
+    'bootstrap' => ['log'],
+    // 组件列表
+    'components' => [
+        // 添加日志组件
+        'log' => [
+            'traceLevel' => YII_DEBUG ? 3 : 0,
+            'targets' => [
+                [
+                    'class' => 'yii\log\FileTarget', // 文件日志
+                    'levels' => ['error', 'warning'], // 日志级别
+                ],
+            ],
+        ],
+    ],
 ];
 
 (new yii\web\Application($config))->run();
